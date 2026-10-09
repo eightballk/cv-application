@@ -13,7 +13,7 @@ I will come back to this project in future and add more features.
 ## Preview
 ![Screenshot of the website's form fill up page with live CV by side](https://github.com/High-Banana/cv-application/assets/138550995/db246f36-8cbe-4433-8bf5-7233c0cee323)
 
-Checkout the website by clicking on [CV Application](https://high-banana.github.io/memory-card/)
+Checkout the website by clicking on [CV Application](https://eightballk.github.io/cv-application/)
 
 ## Technologies used
 * React JS
