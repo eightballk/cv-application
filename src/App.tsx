@@ -4,14 +4,17 @@ import Educational from "./components/Educational";
 import General from "./components/General";
 import Practical from "./components/Practical";
 import Button from "./components/ui/Button";
-import type { CVInfo } from "./types";
+import type { CVInfo, CVLink, TextField } from "./types";
 
 const initialInfo: CVInfo = {
   fullName: "Spongebob Squarepants",
-  birthDate: "July 14th, 1986",
   email: "spongebob123@gmail.com",
   phoneNumber: "707 663 GARY",
   address: "Bikini Bottom, Pacific Ocean",
+  links: [
+    { id: "1", url: "github.com/spongebob" },
+    { id: "2", url: "linkedin.com/in/spongebob" },
+  ],
   schoolName: "Mrs. Puff's Boating School",
   studyTitle: "Boating",
   studyDate: "1999-Present",
@@ -27,8 +30,12 @@ export default function App() {
   const [info, setInfo] = useState<CVInfo>(initialInfo);
   const [isPreview, setIsPreview] = useState(false);
 
-  const updateField = (field: keyof CVInfo, value: string) => {
+  const updateField = (field: TextField, value: string) => {
     setInfo((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const updateLinks = (links: CVLink[]) => {
+    setInfo((prev) => ({ ...prev, links }));
   };
 
   if (isPreview) {
@@ -48,7 +55,7 @@ export default function App() {
   return (
     <div className="grid min-h-screen min-w-full grid-cols-[1.3fr_2fr] bg-neutral-900">
       <div>
-        <General info={info} onChange={updateField} />
+        <General info={info} onChange={updateField} onLinksChange={updateLinks} />
         <Educational info={info} onChange={updateField} />
         <Practical info={info} onChange={updateField} />
       </div>

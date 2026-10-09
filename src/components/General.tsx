@@ -1,8 +1,13 @@
-import Input from "./ui/Input";
-import type { FormSectionProps } from "../types";
 import FormSection from "./ui/FormSection";
+import LinksEditor from "./LinksEditor";
+import Input from "./ui/Input";
+import type { CVLink, FormSectionProps } from "../types";
 
-export default function General({ info, onChange }: FormSectionProps) {
+interface GeneralProps extends FormSectionProps {
+  onLinksChange: (links: CVLink[]) => void;
+}
+
+export default function General({ info, onChange, onLinksChange }: GeneralProps) {
   return (
     <FormSection title="General Information">
       <Input
@@ -10,12 +15,6 @@ export default function General({ info, onChange }: FormSectionProps) {
         placeholder="Spongebob Squarepants"
         value={info.fullName}
         onChange={(e) => onChange("fullName", e.target.value)}
-      />
-      <Input
-        label="Birth Date"
-        placeholder="July 14th, 1986"
-        value={info.birthDate}
-        onChange={(e) => onChange("birthDate", e.target.value)}
       />
       <Input
         label="Email"
@@ -36,11 +35,13 @@ export default function General({ info, onChange }: FormSectionProps) {
       />
       <Input
         label="Address"
+        hint="Optional"
         placeholder="Bikini Bottom, Pacific Ocean"
         autoComplete="off"
         value={info.address}
         onChange={(e) => onChange("address", e.target.value)}
       />
+      <LinksEditor links={info.links} onChange={onLinksChange} />
     </FormSection>
   );
 }
