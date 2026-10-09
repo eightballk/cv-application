@@ -1,5 +1,3 @@
-import type { Dispatch, SetStateAction } from "react";
-
 export interface CVInfo {
   fullName: string;
   birthDate: string;
@@ -17,6 +15,6 @@ export interface CVInfo {
 }
 
 export interface FormSectionProps {
-  getGeneralInfo: Dispatch<SetStateAction<CVInfo>>;
-  generalInfo: CVInfo;
+  info: CVInfo;
+  onChange: (field: keyof CVInfo, value: string) => void;
 }

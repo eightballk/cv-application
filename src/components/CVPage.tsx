@@ -1,65 +1,70 @@
+import { CakeIcon, MailIcon, MapPinIcon, PhoneIcon } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import type { CVInfo } from "../types";
 
 interface CVPageProps {
   person: CVInfo;
 }
 
+interface ContactItemProps {
+  icon: LucideIcon;
+  text: string;
+  alignEnd?: boolean;
+}
+
+function ContactItem({ icon: Icon, text, alignEnd = false }: ContactItemProps) {
+  return (
+    <div className={`flex items-center gap-1 ${alignEnd ? "justify-end" : "justify-start"}`}>
+      <Icon className="size-4 shrink-0" />
+      <span>{text}</span>
+    </div>
+  );
+}
+
 export default function CVPage({ person }: CVPageProps) {
   return (
-    <div className="bg-white col-start-2 min-h-screen sticky top-[10px]">
-      <div className="general-information">
-        <h1 className="font-bold text-3xl p-[20px] tracking-tight">{person.fullName}</h1>
-        <div className="gap-[7px] items-start p-[20px] grid grid-cols-[1fr_2fr] w-[95%]">
-          <div className="flex gap-[4px] justify-start items-center">
-            <i className="fa-solid fa-envelope my-auto"></i>
-            <h1>{person.birthDate}</h1>
-          </div>
-          <div className="flex gap-[4px] justify-end">
-            <i className="fa-solid fa-envelope my-auto"></i>
-            <h1>{person.email}</h1>
-          </div>
-          <div className="flex gap-[4px] justify-start">
-            <i className="fa-solid fa-phone my-auto"></i>
-            <h1>{person.phoneNumber}</h1>
-          </div>
-          <div className="flex gap-[4px] justify-end">
-            <i className="fa-solid fa-map-marker my-auto"></i>
-            <h1>{person.address}</h1>
+    <div className="sticky top-2.5 col-start-2 min-h-screen bg-white">
+      <header>
+        <h1 className="p-5 text-3xl font-bold tracking-tight">{person.fullName}</h1>
+        <div className="grid w-11/12 grid-cols-[1fr_2fr] items-start gap-2 p-5">
+          <ContactItem icon={CakeIcon} text={person.birthDate} />
+          <ContactItem icon={MailIcon} text={person.email} alignEnd />
+          <ContactItem icon={PhoneIcon} text={person.phoneNumber} />
+          <ContactItem icon={MapPinIcon} text={person.address} alignEnd />
+        </div>
+      </header>
+
+      <section className="p-5">
+        <h2 className="text-2xl font-bold">Education</h2>
+        <hr className="mb-2.5 h-0.5 w-11/12 border-0 bg-black" />
+        <div className="grid w-11/12 grid-cols-[1.5fr_3fr]">
+          <p className="font-bold">{person.studyDate}</p>
+          <div className="flex flex-col items-start gap-2.5">
+            <p className="font-bold">
+              <span className="text-xl">{person.schoolName},</span> {person.schoolAddress}
+            </p>
+            <p>
+              <span className="font-bold">Title of study:</span>{" "}
+              <span className="font-semibold">{person.studyTitle}</span>
+            </p>
           </div>
         </div>
-      </div>
-      <div className="educational-information p-[20px]">
-        <h1 className="text-2xl font-bold">EDUCATION</h1>
-        <hr className="bg-black h-[2px] w-[95%] mb-[10px]"></hr>
-        <div className="grid grid-cols-[1.5fr_3fr] w-[95%]">
-          <h1 className="font-bold">{person.studyDate}</h1>
-          <div className="flex gap-[10px] items-start flex-col">
-            <h1 className="font-bold">
-              <span className="text-[20px]">{person.schoolName},</span> {person.schoolAddress}
-            </h1>
-            <h1>
-              <span className="font-bold">Title of study:</span> <span className="font-semibold">{person.studyTitle}</span>
-            </h1>
+      </section>
+
+      <section className="p-5">
+        <h2 className="text-2xl font-bold">Work Experience</h2>
+        <hr className="mb-2.5 h-0.5 w-11/12 border-0 bg-black" />
+        <div className="grid w-11/12 grid-cols-[1.5fr_3fr]">
+          <p className="font-bold">{person.jobDate}</p>
+          <div className="flex flex-col items-start gap-2.5">
+            <p className="text-xl font-bold">{person.jobPosition}</p>
+            <p className="font-semibold">
+              <span className="font-bold">Company Name:</span> {person.companyName}
+            </p>
+            <p className="text-lg font-semibold">{person.jobDescription}</p>
           </div>
         </div>
-      </div>
-      <div>
-        <div className="practical-information p-[20px]">
-          <h1 className="font-bold text-2xl">Work Experience</h1>
-          <hr className="bg-black h-[2px] w-[95%] mb-[10px]"></hr>
-          <div className="grid grid-cols-[1.5fr_3fr] w-[95%]">
-            <h1 className="font-bold">{person.jobDate}</h1>
-            <div className="flex flex-col gap-[10px] items-start">
-              <h1 className="font-bold text-[20px]">{person.jobPosition}</h1>
-              <h1 className="font-semibold">
-                <span className="font-bold">Company Name: </span>
-                {person.companyName}
-              </h1>
-              <p className="text-[17px] font-semibold">{person.jobDescription}</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      </section>
     </div>
   );
 }
