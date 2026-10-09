@@ -3,9 +3,10 @@ import Educational from "./components/Educational";
 import Practical from "./components/Practical";
 import CVPage from "./components/CVPage";
 import { useState } from "react";
+import { CVInfo } from "./types";
 
 export default function App() {
-  const [info, setInfo] = useState({
+  const [info, setInfo] = useState<CVInfo>({
     fullName: "Spongebob Squarepants",
     birthDate: "July 14th, 1986",
     email: "spongebob123@gmail.com",
@@ -27,9 +28,9 @@ export default function App() {
       {!cv ? (
         <div className="grid grid-cols-[1.3fr_2fr] min-h-screen min-w-full bg-[#171717]">
           <div className="left-side">
-            {!cv && <General getGeneralInfo={setInfo} generalInfo={info} />}
-            {!cv && <Educational getGeneralInfo={setInfo} generalInfo={info} />}
-            {!cv && <Practical getGeneralInfo={setInfo} generalInfo={info} />}
+            {<General getGeneralInfo={setInfo} generalInfo={info} />}
+            {<Educational getGeneralInfo={setInfo} generalInfo={info} />}
+            {<Practical getGeneralInfo={setInfo} generalInfo={info} />}
           </div>
           <div className="right-side my-[115px] mx-[50px]">
             <CVPage person={info} />

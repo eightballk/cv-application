@@ -1,5 +1,6 @@
-/* eslint-disable react/prop-types */
-export default function Educational({ getGeneralInfo, generalInfo }) {
+import { FormSectionProps } from "../types";
+
+export default function Educational({ getGeneralInfo, generalInfo }: FormSectionProps) {
   return (
     <div className="flex flex-col text-white my-[50px] mx-[50px] gap-[30px] col-start-1">
       <h2 className="text-white text-3xl font-bold pl-[20px]">Educational Experience</h2>

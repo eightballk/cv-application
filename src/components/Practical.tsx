@@ -1,5 +1,6 @@
-/* eslint-disable react/prop-types */
-export default function Practical({ getGeneralInfo, generalInfo }) {
+import { FormSectionProps } from "../types";
+
+export default function Practical({ getGeneralInfo, generalInfo }: FormSectionProps) {
   return (
     <div className="flex flex-col text-white my-[50px] mx-[50px] gap-[30px] col-start-1">
       <h2 className="text-white text-3xl font-bold pl-[20px]">Practical Experience</h2>
@@ -34,7 +35,6 @@ export default function Practical({ getGeneralInfo, generalInfo }) {
               Main Responsibilty of your jobs
             </label>
             <textarea
-              type=""
               placeholder="Describe your job role in brief"
               id="jobResponsibility"
               onChange={(event) => getGeneralInfo({ ...generalInfo, jobDescription: event.target.value })}

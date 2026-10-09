@@ -1,5 +1,10 @@
-/* eslint-disable react/prop-types */
-export default function CVPage({ person }) {
+import type { CVInfo } from "../types";
+
+interface CVPageProps {
+  person: CVInfo;
+}
+
+export default function CVPage({ person }: CVPageProps) {
   return (
     <div className="bg-white col-start-2 min-h-screen sticky top-[10px]">
       <div className="general-information">
