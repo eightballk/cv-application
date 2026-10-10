@@ -1,4 +1,4 @@
-import type { ProjectEntry, SkillGroup, WorkEntry } from "@/types";
+import type { CVLink, ProjectEntry, SkillGroup, WorkEntry } from "@/types";
 
 export const createWorkEntry = (): WorkEntry => ({
   id: crypto.randomUUID(),
@@ -41,3 +41,27 @@ export const toSkillList = (text: string): string[] =>
     .split(",")
     .map((item) => item.trim())
     .filter(Boolean);
+
+export const createLink = (): CVLink => ({ id: crypto.randomUUID(), url: "" });
+
+export const formatDateRange = (start: string, end: string): string =>
+  [start, end]
+    .map((date) => date.trim())
+    .filter(Boolean)
+    .join(" - ");
+
+// add / remove / update for any list of items that have an id
+export function entryActions<T extends { id: string }>(
+  entries: T[],
+  onChange: (entries: T[]) => void,
+  create: () => T,
+) {
+  return {
+    add: () => onChange([...entries, create()]),
+    remove: (id: string) => onChange(entries.filter((item) => item.id !== id)),
+    update: (id: string, patch: Partial<Omit<T, "id">>) =>
+      onChange(
+        entries.map((item) => (item.id === id ? { ...item, ...patch } : item)),
+      ),
+  };
+}

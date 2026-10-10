@@ -1,7 +1,8 @@
-import { PlusIcon, Trash2Icon } from "lucide-react";
-import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import type { CVLink } from "@/types";
+import { createLink, entryActions } from "@/lib/entries";
+import AddButton from "@/components/ui/AddButton";
+import RemoveButton from "@/components/ui/RemoveButton";
 
 interface LinksEditorProps {
   links: CVLink[];
@@ -9,10 +10,7 @@ interface LinksEditorProps {
 }
 
 export default function LinksEditor({ links, onChange }: LinksEditorProps) {
-  const addLink = () => onChange([...links, { id: crypto.randomUUID(), url: "" }]);
-  const removeLink = (id: string) => onChange(links.filter((link) => link.id !== id));
-  const updateLink = (id: string, url: string) =>
-    onChange(links.map((link) => (link.id === id ? { ...link, url } : link)));
+  const { add, remove, update } = entryActions(links, onChange, createLink);
 
   return (
     <div className="flex flex-col gap-4">
@@ -26,23 +24,13 @@ export default function LinksEditor({ links, onChange }: LinksEditorProps) {
               placeholder="github.com/spongebob"
               autoComplete="off"
               value={link.url}
-              onChange={(e) => updateLink(link.id, e.target.value)}
+              onChange={(e) => update(link.id, { url: e.target.value })}
             />
           </div>
-          <Button
-            variant="light"
-            className="h-10 px-3"
-            aria-label={`Remove link ${index + 1}`}
-            onClick={() => removeLink(link.id)}
-          >
-            <Trash2Icon className="size-4" />
-          </Button>
+          <RemoveButton label={`Remove link ${index + 1}`} onClick={() => remove(link.id)} />
         </div>
       ))}
-      <Button variant="light" className="flex items-center justify-center gap-2" onClick={addLink}>
-        <PlusIcon className="size-4" />
-        Add link
-      </Button>
+      <AddButton label="Add links" onClick={add} />
     </div>
   );
 }

@@ -1,9 +1,9 @@
-import { PlusIcon, Trash2Icon } from "lucide-react";
 import type { SkillGroup } from "@/types";
-import { createSkillGroup } from "@/lib/entries";
+import { createSkillGroup, entryActions } from "@/lib/entries";
 import FormSection from "@/components/ui/FormSection";
-import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import RemoveButton from "@/components/ui/RemoveButton";
+import AddButton from "@/components/ui/AddButton";
 
 interface SkillsProps {
   groups: SkillGroup[];
@@ -11,10 +11,7 @@ interface SkillsProps {
 }
 
 export default function Skills({ groups, onChange }: SkillsProps) {
-  const addGroup = () => onChange([...groups, createSkillGroup()]);
-  const removeGroup = (id: string) => onChange(groups.filter((item) => item.id !== id));
-  const updateGroup = (id: string, patch: Partial<Omit<SkillGroup, "id">>) =>
-    onChange(groups.map((item) => (item.id === id ? { ...item, ...patch } : item)));
+  const { add, remove, update } = entryActions(groups, onChange, createSkillGroup);
 
   return (
     <FormSection title="Skills">
@@ -26,30 +23,20 @@ export default function Skills({ groups, onChange }: SkillsProps) {
               hint={index === 0 ? "e.g. Languages, Tools" : undefined}
               placeholder="Languages"
               value={group.category}
-              onChange={(e) => updateGroup(group.id, { category: e.target.value })}
+              onChange={(e) => update(group.id, { category: e.target.value })}
             />
             <Input
               label="Skills"
               hint={index === 0 ? "comma separated" : undefined}
               placeholder="C#, TypeScript, SQL"
               value={group.items}
-              onChange={(e) => updateGroup(group.id, { items: e.target.value })}
+              onChange={(e) => update(group.id, { items: e.target.value })}
             />
+            <RemoveButton label={`Remove skill ${index + 1}`} onClick={() => remove(group.id)} />
           </div>
-          <Button
-            variant="light"
-            className="h-10 px-3"
-            aria-label={`Remove skill group ${index + 1}`}
-            onClick={() => removeGroup(group.id)}
-          >
-            <Trash2Icon className="size-4" />
-          </Button>
         </div>
       ))}
-      <Button variant="light" className="flex items-center justify-center gap-2" onClick={addGroup}>
-        <PlusIcon className="size-4" />
-        Add skill group
-      </Button>
+      <AddButton label="Add skill group" onClick={add} />
     </FormSection>
   );
 }
