@@ -13,6 +13,14 @@ export interface WorkEntry {
   highlights: string; // one bullet per line
 }
 
+export interface ProjectEntry {
+  id: string;
+  name: string;
+  url: string; // can be empty, hidden on the CV when blank
+  techStack: string; // can be empty, free text like "React, TypeScript"
+  highlights: string; // one bullet per line
+}
+
 export interface CVInfo {
   fullName: string;
   email: string;
@@ -20,6 +28,7 @@ export interface CVInfo {
   address: string; // optional, an empty string means "not shown"
   links: CVLink[];
   work: WorkEntry[];
+  projects: ProjectEntry[];
   schoolName: string;
   studyTitle: string;
   studyDate: string;
@@ -27,7 +36,7 @@ export interface CVInfo {
 }
 
 // every CVInfo field that holds plain text (everything except links)
-export type TextField = Exclude<keyof CVInfo, "links">;
+export type TextField = Exclude<keyof CVInfo, "links" | "work" | "projects">;
 
 export interface FormSectionProps {
   info: CVInfo;

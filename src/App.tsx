@@ -1,10 +1,11 @@
 import { useState } from "react";
 import Educational from "@/components/Educational";
 import Button from "@/components/ui/Button";
-import type { CVInfo, CVLink, TextField, WorkEntry } from "@/types";
+import type { CVInfo, CVLink, ProjectEntry, TextField, WorkEntry } from "@/types";
 import CVPage from "@/components/CVPage/CVPage";
 import Experience from "@/components/cv-sections/work-section/Experience";
 import General from "@/components/cv-sections/general-section/General";
+import Projects from "@/components/cv-sections/project-section/Projects";
 
 const initialInfo: CVInfo = {
   fullName: "Spongebob Squarepants",
@@ -30,6 +31,15 @@ const initialInfo: CVInfo = {
       highlights: "Cook 200+ Krabby Patties per shift\nKeep the kitchen spotless during rush hour",
     },
   ],
+  projects: [
+    {
+      id: "project-1",
+      name: "Jellyfish Tracker",
+      url: "github.com/spongebob/jellyfish-tracker",
+      techStack: "React, TypeScript, Tailwind",
+      highlights: "Tracks 50+ jellyfish sightings on a live map\nCut load time by 40% with lazy loading",
+    },
+  ],
 };
 
 export default function App() {
@@ -46,6 +56,10 @@ export default function App() {
 
   const updateWork = (work: WorkEntry[]) => {
     setInfo((prev) => ({ ...prev, work }));
+  };
+
+  const updateProjects = (projects: ProjectEntry[]) => {
+    setInfo((prev) => ({ ...prev, projects }));
   };
 
   if (isPreview) {
@@ -66,8 +80,9 @@ export default function App() {
     <div className="grid min-h-screen min-w-full grid-cols-[1.3fr_2fr] bg-neutral-900">
       <div>
         <General info={info} onChange={updateField} onLinksChange={updateLinks} />
-        <Educational info={info} onChange={updateField} />
         <Experience entries={info.work} onChange={updateWork} />
+        <Projects entries={info.projects} onChange={updateProjects} />
+        <Educational info={info} onChange={updateField} />
       </div>
       <div className="mx-12 my-28">
         <CVPage person={info} />

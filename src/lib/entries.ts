@@ -1,4 +1,4 @@
-import type { WorkEntry } from "../types";
+import type { ProjectEntry, WorkEntry } from "@/types";
 
 export const createWorkEntry = (): WorkEntry => ({
   id: crypto.randomUUID(),
@@ -7,6 +7,14 @@ export const createWorkEntry = (): WorkEntry => ({
   location: "",
   startDate: "",
   endDate: "",
+  highlights: "",
+});
+
+export const createProjectEntry = (): ProjectEntry => ({
+  id: crypto.randomUUID(),
+  name: "",
+  url: "",
+  techStack: "",
   highlights: "",
 });
 

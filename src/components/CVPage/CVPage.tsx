@@ -3,6 +3,7 @@ import type { LucideIcon } from "lucide-react";
 import { CVInfo } from "@/types";
 import { displayUrl, toHref } from "@/lib/links";
 import ExperienceSection from "@/components/cv-sections/work-section/ExperienceSection";
+import ProjectsSection from "@/components/cv-sections/project-section/ProjectSection";
 
 interface CVPageProps {
   person: CVInfo;
@@ -81,6 +82,7 @@ export default function CVPage({ person }: CVPageProps) {
       </header>
 
       <ExperienceSection entries={person.work} />
+      <ProjectsSection entries={person.projects} />
 
       <section className="p-5">
         <h2 className="text-2xl font-bold">Education</h2>
