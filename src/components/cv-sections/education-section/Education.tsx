@@ -41,7 +41,7 @@ export default function Education({ entries, onChange }: EducationProps) {
             value={entry.location}
             onChange={(e) => update(entry.id, { location: e.target.value })}
           />
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3">
             <Input
               label="Start date"
               placeholder="2015"

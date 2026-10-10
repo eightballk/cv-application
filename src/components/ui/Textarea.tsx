@@ -17,7 +17,7 @@ export default function Textarea({ label, hint, className = "", ...props }: Text
       </Label>
       <textarea
         id={id}
-        className={`min-h-40 border-2 bg-neutral-700 p-2 text-white placeholder:text-neutral-400 ${className}`}
+        className={`min-h-32 w-full min-w-0 border-2 bg-neutral-700 px-3 py-2 text-sm text-white placeholder:text-neutral-400 ${className}`}
         {...props}
       />
     </div>

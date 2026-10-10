@@ -13,7 +13,7 @@ export default function Button({ variant = "dark", type = "button", className = 
   return (
     <button
       type={type}
-      className={`rounded py-2.5 font-bold transition duration-300 hover:scale-105 print:hidden ${variants[variant]} ${className}`}
+      className={`rounded py-2.5 text-sm font-bold transition duration-300 hover:scale-105 print:hidden ${variants[variant]} ${className}`}
       {...props}
     />
   );

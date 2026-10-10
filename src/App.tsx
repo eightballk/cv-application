@@ -56,13 +56,15 @@ export default function App() {
         </div>
       </header>
 
-      <div className="grid min-h-0 flex-1 grid-cols-[1.3fr_2fr] grid-rows-1 print:block">
-        <div className="flex flex-col gap-10 overflow-y-auto p-8 print:hidden">
-          <General info={info} onChange={updateField} onLinksChange={setList("links")} />
-          <Experience entries={info.work} onChange={setList("work")} />
-          <Projects entries={info.projects} onChange={setList("projects")} />
-          <Skills groups={info.skills} onChange={setList("skills")} />
-          <Education entries={info.education} onChange={setList("education")} />
+      <div className="grid min-h-0 flex-1 grid-cols-[1fr_minmax(0,min(54rem,55%))] grid-rows-1 print:block">
+        <div className="overflow-y-auto p-6 print:hidden">
+          <div className="mx-auto flex max-w-3xl flex-col gap-8">
+            <General info={info} onChange={updateField} onLinksChange={setList("links")} />
+            <Experience entries={info.work} onChange={setList("work")} />
+            <Projects entries={info.projects} onChange={setList("projects")} />
+            <Skills groups={info.skills} onChange={setList("skills")} />
+            <Education entries={info.education} onChange={setList("education")} />
+          </div>
         </div>
 
         <main className="overflow-y-auto bg-neutral-800 p-6 [scrollbar-gutter:stable] print:overflow-visible print:bg-white print:p-0">
