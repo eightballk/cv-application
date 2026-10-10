@@ -1,6 +1,7 @@
-import { toBullets } from "@/lib/entries";
-import { WorkEntry } from "@/types";
+import CVEntry from "@/components/CVPage/CVEntry";
 import CVSection from "@/components/CVPage/CVSection";
+import { formatDateRange, toBullets } from "@/lib/entries";
+import type { WorkEntry } from "@/types";
 
 interface ExperienceSectionProps {
   entries: WorkEntry[];
@@ -13,33 +14,16 @@ export default function ExperienceSection({ entries }: ExperienceSectionProps) {
   return (
     <CVSection title="Experience">
       <div className="flex flex-col gap-4">
-        {visible.map((entry) => {
-          const dates = [entry.startDate, entry.endDate]
-            .map((date) => date.trim())
-            .filter(Boolean)
-            .join(" - ");
-          const bullets = toBullets(entry.highlights);
-
-          return (
-            <article key={entry.id}>
-              <div className="flex justify-between gap-4">
-                <h3 className="font-bold">{entry.company}</h3>
-                <span className="shrink-0 text-sm">{dates}</span>
-              </div>
-              <div className="flex justify-between gap-4 text-sm italic">
-                <span>{entry.position}</span>
-                <span>{entry.location}</span>
-              </div>
-              {bullets.length > 0 && (
-                <ul className="mt-1.5 list-disc pl-5 text-sm marker:text-base">
-                  {bullets.map((bullet, index) => (
-                    <li key={index}>{bullet}</li>
-                  ))}
-                </ul>
-              )}
-            </article>
-          );
-        })}
+        {visible.map((entry) => (
+          <CVEntry
+            key={entry.id}
+            title={entry.company}
+            subtitle={entry.position}
+            dates={formatDateRange(entry.startDate, entry.endDate)}
+            location={entry.location}
+            bullets={toBullets(entry.highlights)}
+          />
+        ))}
       </div>
     </CVSection>
   );

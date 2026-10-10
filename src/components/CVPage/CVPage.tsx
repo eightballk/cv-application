@@ -5,6 +5,7 @@ import { displayUrl, toHref } from "@/lib/links";
 import ExperienceSection from "@/components/cv-sections/work-section/ExperienceSection";
 import ProjectsSection from "@/components/cv-sections/project-section/ProjectSection";
 import SkillsSection from "@/components/cv-sections/skills-section/SkillsSection";
+import EducationSection from "../cv-sections/education-section/EducationSection";
 
 interface CVPageProps {
   person: CVInfo;
@@ -85,23 +86,7 @@ export default function CVPage({ person }: CVPageProps) {
       <ExperienceSection entries={person.work} />
       <ProjectsSection entries={person.projects} />
       <SkillsSection groups={person.skills} />
-
-      <section className="p-5">
-        <h2 className="text-2xl font-bold">Education</h2>
-        <hr className="mb-2.5 h-0.5 w-11/12 border-0 bg-black" />
-        <div className="grid w-11/12 grid-cols-[1.5fr_3fr]">
-          <p className="font-bold">{person.studyDate}</p>
-          <div className="flex flex-col items-start gap-2.5">
-            <p className="font-bold">
-              <span className="text-xl">{person.schoolName},</span> {person.schoolAddress}
-            </p>
-            <p>
-              <span className="font-bold">Title of study:</span>{" "}
-              <span className="font-semibold">{person.studyTitle}</span>
-            </p>
-          </div>
-        </div>
-      </section>
+      <EducationSection entries={person.education} />
     </div>
   );
 }

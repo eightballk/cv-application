@@ -1,4 +1,10 @@
-import type { CVLink, ProjectEntry, SkillGroup, WorkEntry } from "@/types";
+import type {
+  CVLink,
+  EducationEntry,
+  ProjectEntry,
+  SkillGroup,
+  WorkEntry,
+} from "@/types";
 
 export const createWorkEntry = (): WorkEntry => ({
   id: crypto.randomUUID(),
@@ -22,6 +28,16 @@ export const createSkillGroup = (): SkillGroup => ({
   id: crypto.randomUUID(),
   category: "",
   items: "",
+});
+
+export const createEducationEntry = (): EducationEntry => ({
+  id: crypto.randomUUID(),
+  school: "",
+  degree: "",
+  location: "",
+  startDate: "",
+  endDate: "",
+  highlights: "",
 });
 
 // Strips a leading list marker from pasted bullets.

@@ -1,12 +1,12 @@
 import { useState } from "react";
-import Educational from "@/components/Educational";
 import Button from "@/components/ui/Button";
-import type { CVInfo, CVLink, ProjectEntry, SkillGroup, TextField, WorkEntry } from "@/types";
+import type { CVInfo, CVLink, EducationEntry, ProjectEntry, SkillGroup, TextField, WorkEntry } from "@/types";
 import CVPage from "@/components/CVPage/CVPage";
 import Experience from "@/components/cv-sections/work-section/Experience";
 import General from "@/components/cv-sections/general-section/General";
 import Projects from "@/components/cv-sections/project-section/Projects";
 import Skills from "@/components/cv-sections/skills-section/Skills";
+import Education from "./components/cv-sections/education-section/Education";
 
 const initialInfo: CVInfo = {
   fullName: "Spongebob Squarepants",
@@ -17,10 +17,6 @@ const initialInfo: CVInfo = {
     { id: "1", url: "github.com/spongebob" },
     { id: "2", url: "linkedin.com/in/spongebob" },
   ],
-  schoolName: "Mrs. Puff's Boating School",
-  studyTitle: "Boating",
-  studyDate: "1999-Present",
-  schoolAddress: "Bikini Bottom",
   work: [
     {
       id: "work-1",
@@ -44,6 +40,17 @@ const initialInfo: CVInfo = {
   skills: [
     { id: "skills-1", category: "Languages", items: "C#, TypeScript, C++" },
     { id: "skills-2", category: "Frameworks", items: "ASP.NET Core, React, Tailwind CSS" },
+  ],
+  education: [
+    {
+      id: "education-1",
+      school: "Mrs. Puff's Boating School",
+      degree: "BSc in Boating",
+      location: "Bikini Bottom",
+      startDate: "1999",
+      endDate: "Present",
+      highlights: "Failed the driving test 38 times",
+    },
   ],
 };
 
@@ -71,6 +78,10 @@ export default function App() {
     setInfo((prev) => ({ ...prev, skills }));
   };
 
+  const updateEducation = (education: EducationEntry[]) => {
+    setInfo((prev) => ({ ...prev, education }));
+  };
+
   if (isPreview) {
     return (
       <>
@@ -92,7 +103,7 @@ export default function App() {
         <Experience entries={info.work} onChange={updateWork} />
         <Projects entries={info.projects} onChange={updateProjects} />
         <Skills groups={info.skills} onChange={updateSkills} />
-        <Educational info={info} onChange={updateField} />
+        <Education entries={info.education} onChange={updateEducation} />
       </div>
       <div className="mx-12 my-28">
         <CVPage person={info} />
