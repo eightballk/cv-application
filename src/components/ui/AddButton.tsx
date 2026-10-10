@@ -8,7 +8,7 @@ interface AddButtonProps {
 
 export default function AddButton({ label, onClick }: AddButtonProps) {
   return (
-    <Button variant="light" className="flex items-center justify-center gap-2" onClick={onClick}>
+    <Button variant="secondary" className="w-full border-dashed" onClick={onClick}>
       <PlusIcon className="size-4" />
       {label}
     </Button>

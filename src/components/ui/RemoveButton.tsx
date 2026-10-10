@@ -8,7 +8,7 @@ interface RemoveButtonProps {
 
 export default function RemoveButton({ label, onClick }: RemoveButtonProps) {
   return (
-    <Button variant="light" className="h-9 px-3" aria-label={label} onClick={onClick}>
+    <Button variant="danger" size="icon" aria-label={label} onClick={onClick}>
       <Trash2Icon className="size-4" />
     </Button>
   );

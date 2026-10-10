@@ -40,17 +40,17 @@ export default function App() {
   };
 
   return (
-    <div className="flex h-screen flex-col bg-neutral-900 text-white print:block print:h-auto print:bg-white">
-      <header className="flex shrink-0 items-center justify-between border-b border-neutral-700 px-6 py-3 print:hidden">
-        <h1 className="text-lg font-bold">CV Builder</h1>
+    <div className="flex h-screen flex-col text-fg print:block print:h-auto print:bg-white">
+      <header className="flex shrink-0 items-center justify-between border-b border-line/10 bg-surface/60 backdrop-blur-md px-6 py-3 print:hidden">
+        <h1 className="text-base font-semibold tracking-light">CV Builder</h1>
         <div className="flex gap-2">
-          <Button variant="light" className="px-4" onClick={loadSample}>
+          <Button variant="secondary" className="px-4" onClick={loadSample}>
             Load sample
           </Button>
-          <Button variant="light" className="px-4" onClick={clearAll}>
+          <Button variant="secondary" className="px-4" onClick={clearAll}>
             Clear all
           </Button>
-          <Button variant="light" className="px-4" onClick={() => window.print()}>
+          <Button variant="primary" className="px-4" onClick={() => window.print()}>
             Print / Save PDF
           </Button>
         </div>
@@ -67,7 +67,7 @@ export default function App() {
           </div>
         </div>
 
-        <main className="overflow-y-auto bg-neutral-800 p-6 [scrollbar-gutter:stable] print:overflow-visible print:bg-white print:p-0">
+        <main className="overflow-y-auto border-l border-line/10 bg-surface/60 backdrop-blur-md p-6 [scrollbar-gutter:stable] print:overflow-visible print:bg-white print:p-0">
           <PagePreview>
             <CVPage person={info} />
           </PagePreview>

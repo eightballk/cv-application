@@ -1,19 +1,32 @@
 import type { ComponentPropsWithoutRef } from "react";
 
 interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
-  variant?: "light" | "dark";
+  variant?: "primary" | "secondary" | "danger";
+  size?: "md" | "icon";
 }
 
 const variants = {
-  light: "bg-white text-black hover:bg-slate-100",
-  dark: "bg-black text-white hover:bg-gray-800",
+  primary: "bg-primary text-background hover:bg-primary-hover",
+  secondary: "border border-line/10 bg-line/5 text-fg hover:bg-line/10",
+  danger: "text-fg-muted hover:bg-danger/10 hover:text-danger",
 };
 
-export default function Button({ variant = "dark", type = "button", className = "", ...props }: ButtonProps) {
+const sizes = {
+  md: "h-9 px-4",
+  icon: "size-9",
+};
+
+export default function Button({
+  variant = "secondary",
+  size = "md",
+  type = "button",
+  className = "",
+  ...props
+}: ButtonProps) {
   return (
     <button
       type={type}
-      className={`rounded py-2.5 text-sm font-bold transition duration-300 hover:scale-105 print:hidden ${variants[variant]} ${className}`}
+      className={`inline-flex shrink-0 items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-50 print:hidden ${variants[variant]} ${sizes[size]} ${className}`}
       {...props}
     />
   );

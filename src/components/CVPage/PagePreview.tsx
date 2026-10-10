@@ -29,7 +29,7 @@ export default function PagePreview({ children }: PagePreviewProps) {
     <div ref={containerRef} className="w-full print:w-auto">
       <div
         style={{ "--page-scale": scale } as CSSProperties}
-        className="relative mx-auto min-h-[297mm] w-[210mm] bg-white p-[15mm] text-neutral-900 shadow-lg [zoom:var(--page-scale)] print:min-h-0 print:w-auto print:p-0 print:shadow-none print:[zoom:1]"
+        className="relative mx-auto min-h-[297mm] w-[210mm] bg-white p-[15mm] text-neutral-900 shadow-[0_0_80px_-20px] shadow-primary/30 [zoom:var(--page-scale)] print:min-h-0 print:w-auto print:p-0 print:shadow-none print:[zoom:1]"
       >
         {children}
 

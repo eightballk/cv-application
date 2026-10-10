@@ -9,9 +9,9 @@ interface EntryCardProps {
 
 export default function EntryCard({ title, onRemove, children }: EntryCardProps) {
   return (
-    <div className="flex flex-col gap-4 rounded-lg border-2 border-neutral-600 p-4">
+    <div className="flex flex-col gap-4 rounded-lg border border-line/10 bg-background/40 p-4">
       <div className="flex items-center justify-between gap-4">
-        <h3 className="truncate text-lg font-semibold">{title}</h3>
+        <h3 className="truncate text-base font-medium text-fg">{title}</h3>
         <RemoveButton label={`Remove ${title}`} onClick={onRemove} />
       </div>
       {children}

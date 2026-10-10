@@ -13,12 +13,12 @@ export default function Input({ label, hint, type = "text", className = "", ...p
   return (
     <div className="flex min-w-0 flex-col gap-1.5">
       <Label htmlFor={id}>
-        {label} {hint && <small className="font-normal text-neutral-400">({hint})</small>}
+        {label} {hint && <small className="font-normal text-fg-subtle">({hint})</small>}
       </Label>
       <input
         id={id}
         type={type}
-        className={`h-9 w-full min-w-0 border-2 bg-neutral-700 px-3 text-sm text-white placeholder:text-neutral-400 ${className}`}
+        className={`h-9 w-full min-w-0 rounded-md border border-line/10 bg-background/60 px-3 text-sm text-fg transition-colors placeholder:text-fg-subtle focus:border-line/60 focus:outline-none focus:ring-1 focus:ring-line/20 ${className}`}
         {...props}
       />
     </div>
