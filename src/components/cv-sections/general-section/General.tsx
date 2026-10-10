@@ -1,7 +1,7 @@
-import { CVLink, FormSectionProps } from "../../../types";
-import LinksEditor from "../../LinksEditor";
-import FormSection from "../../ui/FormSection";
-import Input from "../../ui/Input";
+import { CVLink, FormSectionProps } from "@/types";
+import LinksEditor from "@/components/LinksEditor";
+import FormSection from "@/components/ui/FormSection";
+import Input from "@/components/ui/Input";
 
 interface GeneralProps extends FormSectionProps {
   onLinksChange: (links: CVLink[]) => void;

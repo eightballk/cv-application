@@ -1,6 +1,6 @@
 import { Trash2Icon } from "lucide-react";
 import type { ReactNode } from "react";
-import Button from "./ui/Button";
+import Button from "@/components/ui/Button";
 
 interface EntryCardProps {
   title: string;

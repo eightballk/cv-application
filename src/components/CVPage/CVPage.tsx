@@ -1,8 +1,8 @@
 import { LinkIcon, MailIcon, MapPinIcon, PhoneIcon } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { CVInfo } from "../../types";
-import { displayUrl, toHref } from "../../lib/links";
-import ExperienceSection from "../cv-sections/work-section/ExperienceSection";
+import { CVInfo } from "@/types";
+import { displayUrl, toHref } from "@/lib/links";
+import ExperienceSection from "@/components/cv-sections/work-section/ExperienceSection";
 
 interface CVPageProps {
   person: CVInfo;

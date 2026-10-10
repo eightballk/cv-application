@@ -1,6 +1,6 @@
-import Input from "./ui/Input";
-import type { FormSectionProps } from "../types";
-import FormSection from "./ui/FormSection";
+import Input from "@/components/ui/Input";
+import type { FormSectionProps } from "@/types";
+import FormSection from "@/components/ui/FormSection";
 
 export default function Educational({ info, onChange }: FormSectionProps) {
   return (

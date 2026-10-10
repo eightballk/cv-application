@@ -1,7 +1,7 @@
 import { PlusIcon, Trash2Icon } from "lucide-react";
-import Button from "./ui/Button";
-import Input from "./ui/Input";
-import type { CVLink } from "../types";
+import Button from "@/components/ui/Button";
+import Input from "@/components/ui/Input";
+import type { CVLink } from "@/types";
 
 interface LinksEditorProps {
   links: CVLink[];

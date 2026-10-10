@@ -1,10 +1,10 @@
 import { useState } from "react";
-import Educational from "./components/Educational";
-import Button from "./components/ui/Button";
-import type { CVInfo, CVLink, TextField, WorkEntry } from "./types";
-import CVPage from "./components/CVPage/CVPage";
-import Experience from "./components/cv-sections/work-section/Experience";
-import General from "./components/cv-sections/general-section/General";
+import Educational from "@/components/Educational";
+import Button from "@/components/ui/Button";
+import type { CVInfo, CVLink, TextField, WorkEntry } from "@/types";
+import CVPage from "@/components/CVPage/CVPage";
+import Experience from "@/components/cv-sections/work-section/Experience";
+import General from "@/components/cv-sections/general-section/General";
 
 const initialInfo: CVInfo = {
   fullName: "Spongebob Squarepants",
