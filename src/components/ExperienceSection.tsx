@@ -31,7 +31,7 @@ export default function ExperienceSection({ entries }: ExperienceSectionProps) {
                 <span>{entry.location}</span>
               </div>
               {bullets.length > 0 && (
-                <ul className="mt-1.5 list-disc pl-5 text-sm">
+                <ul className="mt-1.5 list-disc pl-5 text-sm marker:text-base">
                   {bullets.map((bullet, index) => (
                     <li key={index}>{bullet}</li>
                   ))}
