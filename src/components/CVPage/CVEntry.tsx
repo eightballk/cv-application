@@ -8,7 +8,7 @@ interface CVEntryProps {
 
 export default function CVEntry({ title, subtitle, dates, location, bullets }: CVEntryProps) {
   return (
-    <article>
+    <article className="break-inside-avoid">
       <div className="flex justify-between gap-4">
         <h3 className="font-bold">{title}</h3>
         <span className="shrink-0 text-sm">{dates}</span>

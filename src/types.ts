@@ -58,3 +58,5 @@ export interface FormSectionProps {
   info: CVInfo;
   onChange: (field: TextField, value: string) => void;
 }
+
+export type ListField = Exclude<keyof CVInfo, TextField>;

@@ -74,8 +74,8 @@ export default function CVPage({ person }: CVPageProps) {
   ].filter(hasText);
 
   return (
-    <div className="sticky top-2.5 col-start-2 min-h-screen bg-white">
-      <header className="mx-5 border-b-2 border-black pb-4 pt-8">
+    <div className="sticky top-2.5 min-h-screen bg-white">
+      <header className="border-b-2 border-black pb-4">
         <h1 className="text-2xl font-bold tracking-tight">{person.fullName}</h1>
         <div className="mt-3 flex flex-col gap-1 text-sm">
           <ContactRow entries={topRow} />
