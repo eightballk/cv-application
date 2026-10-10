@@ -1,11 +1,11 @@
 import { PlusIcon } from "lucide-react";
-import EntryCard from "./EntryCard";
-import Button from "./ui/Button";
-import Input from "./ui/Input";
-import Textarea from "./ui/Textarea";
-import { createWorkEntry } from "../lib/entries";
-import type { WorkEntry } from "../types";
-import FormSection from "./ui/FormSection";
+import { WorkEntry } from "../../../types";
+import { createWorkEntry } from "../../../lib/entries";
+import FormSection from "../../ui/FormSection";
+import EntryCard from "../../EntryCard";
+import Input from "../../ui/Input";
+import Button from "../../ui/Button";
+import Textarea from "../../ui/Textarea";
 
 interface ExperienceProps {
   entries: WorkEntry[];

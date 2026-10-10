@@ -1,6 +1,6 @@
-import CVSection from "./CVSection";
-import { toBullets } from "../lib/entries";
-import type { WorkEntry } from "../types";
+import { toBullets } from "../../../lib/entries";
+import { WorkEntry } from "../../../types";
+import CVSection from "../../CVPage/CVSection";
 
 interface ExperienceSectionProps {
   entries: WorkEntry[];
