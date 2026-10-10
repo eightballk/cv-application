@@ -5,17 +5,19 @@ import EntryCard from "@/components/EntryCard";
 import Input from "@/components/ui/Input";
 import Textarea from "@/components/ui/Textarea";
 import AddButton from "@/components/ui/AddButton";
+import { ReactNode } from "react";
 
 interface ExperienceProps {
   entries: WorkEntry[];
   onChange: (entries: WorkEntry[]) => void;
+  controls?: ReactNode;
 }
 
-export default function Experience({ entries, onChange }: ExperienceProps) {
+export default function Experience({ entries, onChange, controls }: ExperienceProps) {
   const { add, remove, update } = entryActions(entries, onChange, createWorkEntry);
 
   return (
-    <FormSection title="Work Experience">
+    <FormSection title="Work Experience" controls={controls}>
       {entries.map((entry, index) => (
         <EntryCard
           key={entry.id}

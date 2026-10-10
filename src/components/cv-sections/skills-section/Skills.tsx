@@ -4,17 +4,19 @@ import AddButton from "@/components/ui/AddButton";
 import Input from "@/components/ui/Input";
 import { createSkillGroup, entryActions } from "@/lib/entries";
 import type { SkillGroup } from "@/types";
+import { ReactNode } from "react";
 
 interface SkillsProps {
   groups: SkillGroup[];
   onChange: (groups: SkillGroup[]) => void;
+  controls?: ReactNode;
 }
 
-export default function Skills({ groups, onChange }: SkillsProps) {
+export default function Skills({ groups, onChange, controls }: SkillsProps) {
   const { add, remove, update } = entryActions(groups, onChange, createSkillGroup);
 
   return (
-    <FormSection title="Skills">
+    <FormSection title="Skills" controls={controls}>
       {groups.map((group, index) => (
         <EntryCard
           key={group.id}

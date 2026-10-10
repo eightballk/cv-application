@@ -5,17 +5,19 @@ import Input from "@/components/ui/Input";
 import Textarea from "@/components/ui/Textarea";
 import { createEducationEntry, entryActions } from "@/lib/entries";
 import type { EducationEntry } from "@/types";
+import { ReactNode } from "react";
 
 interface EducationProps {
   entries: EducationEntry[];
   onChange: (entries: EducationEntry[]) => void;
+  controls?: ReactNode;
 }
 
-export default function Education({ entries, onChange }: EducationProps) {
+export default function Education({ entries, onChange, controls }: EducationProps) {
   const { add, remove, update } = entryActions(entries, onChange, createEducationEntry);
 
   return (
-    <FormSection title="Education">
+    <FormSection title="Education" controls={controls}>
       {entries.map((entry, index) => (
         <EntryCard
           key={entry.id}

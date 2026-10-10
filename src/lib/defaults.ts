@@ -1,4 +1,5 @@
 import type { CVInfo } from "@/types";
+import { defaultSections } from "@/lib/sections";
 
 export const emptyInfo: CVInfo = {
   fullName: "",
@@ -10,6 +11,7 @@ export const emptyInfo: CVInfo = {
   projects: [],
   skills: [],
   education: [],
+  sections: defaultSections(),
 };
 
 export const sampleInfo: CVInfo = {
@@ -62,4 +64,5 @@ export const sampleInfo: CVInfo = {
       highlights: "Failed the driving test 38 times",
     },
   ],
+  sections: defaultSections(),
 };

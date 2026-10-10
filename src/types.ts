@@ -37,6 +37,13 @@ export interface EducationEntry {
   highlights: string; // one bullet per line, can be empty
 }
 
+export type SectionId = "experience" | "projects" | "skills" | "education";
+
+export interface SectionConfig {
+  id: SectionId;
+  visible: boolean;
+}
+
 export interface CVInfo {
   fullName: string;
   email: string;
@@ -47,6 +54,7 @@ export interface CVInfo {
   projects: ProjectEntry[];
   skills: SkillGroup[];
   education: EducationEntry[];
+  sections: SectionConfig[];
 }
 
 // every CVInfo field that holds plain text (everything except links)

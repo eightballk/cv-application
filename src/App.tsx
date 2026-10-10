@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import CVPage from "@/components/CVPage/CVPage";
 import PagePreview from "@/components/CVPage/PagePreview";
 import General from "@/components/cv-sections/general-section/General";
@@ -9,8 +9,10 @@ import Education from "@/components/cv-sections/education-section/Education";
 import Button from "@/components/ui/Button";
 import { emptyInfo, sampleInfo } from "@/lib/defaults";
 import { loadInfo, saveInfo } from "@/lib/storage";
-import type { CVInfo, ListField, TextField } from "@/types";
+import type { CVInfo, ListField, SectionId, TextField } from "@/types";
 import { useAutosave } from "@/hooks/useAutoSave";
+import SectionControls from "./components/SectionControls";
+import { moveSection, SECTION_LABELS, toggleSection } from "./lib/sections";
 
 export default function App() {
   const [info, setInfo] = useState<CVInfo>(loadInfo);
@@ -29,13 +31,27 @@ export default function App() {
 
   const clearAll = () => {
     if (window.confirm("Clear everything? This removes all the information you entered.")) {
-      setInfo(emptyInfo);
+      setInfo((prev) => ({ ...emptyInfo, sections: prev.sections }));
     }
   };
 
   const loadSample = () => {
     if (window.confirm("Replace everything with the sample data?")) {
-      setInfo(sampleInfo);
+      setInfo((prev) => ({ ...sampleInfo, sections: prev.sections }));
+    }
+  };
+  const setSections = setList("sections");
+
+  const renderForm = (id: SectionId, controls: ReactNode) => {
+    switch (id) {
+      case "experience":
+        return <Experience entries={info.work} onChange={setList("work")} controls={controls} />;
+      case "projects":
+        return <Projects entries={info.projects} onChange={setList("projects")} controls={controls} />;
+      case "skills":
+        return <Skills groups={info.skills} onChange={setList("skills")} controls={controls} />;
+      case "education":
+        return <Education entries={info.education} onChange={setList("education")} controls={controls} />;
     }
   };
 
@@ -60,10 +76,22 @@ export default function App() {
         <div className="overflow-y-auto p-6 print:hidden">
           <div className="mx-auto flex max-w-3xl flex-col gap-8">
             <General info={info} onChange={updateField} onLinksChange={setList("links")} />
-            <Experience entries={info.work} onChange={setList("work")} />
-            <Projects entries={info.projects} onChange={setList("projects")} />
-            <Skills groups={info.skills} onChange={setList("skills")} />
-            <Education entries={info.education} onChange={setList("education")} />
+            {info.sections.map((section, index) => (
+              <div key={section.id} className={section.visible ? "" : "opacity-60"}>
+                {renderForm(
+                  section.id,
+                  <SectionControls
+                    label={SECTION_LABELS[section.id]}
+                    visible={section.visible}
+                    canMoveUp={index > 0}
+                    canMoveDown={index < info.sections.length - 1}
+                    onMoveUp={() => setSections(moveSection(info.sections, section.id, -1))}
+                    onMoveDown={() => setSections(moveSection(info.sections, section.id, 1))}
+                    onToggle={() => setSections(toggleSection(info.sections, section.id))}
+                  />,
+                )}
+              </div>
+            ))}
           </div>
         </div>
 

@@ -5,17 +5,19 @@ import FormSection from "@/components/ui/FormSection";
 import Input from "@/components/ui/Input";
 import Textarea from "@/components/ui/Textarea";
 import AddButton from "@/components/ui/AddButton";
+import { ReactNode } from "react";
 
 interface ProjectsProps {
   entries: ProjectEntry[];
   onChange: (entries: ProjectEntry[]) => void;
+  controls?: ReactNode;
 }
 
-export default function Projects({ entries, onChange }: ProjectsProps) {
+export default function Projects({ entries, onChange, controls }: ProjectsProps) {
   const { add, remove, update } = entryActions(entries, onChange, createProjectEntry);
 
   return (
-    <FormSection title="Projects">
+    <FormSection title="Projects" controls={controls}>
       {entries.map((entry, index) => (
         <EntryCard
           key={entry.id}

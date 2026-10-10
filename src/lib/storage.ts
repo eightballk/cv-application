@@ -1,5 +1,6 @@
 import { emptyInfo, sampleInfo } from "@/lib/defaults";
 import type { CVInfo } from "@/types";
+import { normalizeSections } from "./sections";
 
 // Bump the version whenever the shape of CVInfo changes in a way old data can't satisfy.
 const STORAGE_KEY = "cv-application:v1";
@@ -24,6 +25,7 @@ export function loadInfo(): CVInfo {
           : Array.isArray(value);
       if (isValid) result[key] = value;
     }
+    result.sections = normalizeSections(parsed.sections);
     return result as unknown as CVInfo;
   } catch {
     return emptyInfo;

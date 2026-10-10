@@ -1,11 +1,12 @@
 import { LinkIcon, MailIcon, MapPinIcon, PhoneIcon } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { CVInfo } from "@/types";
+import { CVInfo, SectionId } from "@/types";
 import { displayUrl, toHref } from "@/lib/links";
 import ExperienceSection from "@/components/cv-sections/work-section/ExperienceSection";
 import ProjectsSection from "@/components/cv-sections/project-section/ProjectSection";
 import SkillsSection from "@/components/cv-sections/skills-section/SkillsSection";
 import EducationSection from "../cv-sections/education-section/EducationSection";
+import { Fragment } from "react/jsx-runtime";
 
 interface CVPageProps {
   person: CVInfo;
@@ -73,6 +74,19 @@ export default function CVPage({ person }: CVPageProps) {
     })),
   ].filter(hasText);
 
+  const renderSection = (id: SectionId) => {
+    switch (id) {
+      case "experience":
+        return <ExperienceSection entries={person.work} />;
+      case "projects":
+        return <ProjectsSection entries={person.projects} />;
+      case "skills":
+        return <SkillsSection groups={person.skills} />;
+      case "education":
+        return <EducationSection entries={person.education} />;
+    }
+  };
+
   return (
     <div className="sticky top-2.5 min-h-screen bg-white">
       <header className="border-b-2 border-black pb-4">
@@ -83,10 +97,11 @@ export default function CVPage({ person }: CVPageProps) {
         </div>
       </header>
 
-      <ExperienceSection entries={person.work} />
-      <ProjectsSection entries={person.projects} />
-      <SkillsSection groups={person.skills} />
-      <EducationSection entries={person.education} />
+      {person.sections
+        .filter((section) => section.visible)
+        .map((section) => (
+          <Fragment key={section.id}>{renderSection(section.id)}</Fragment>
+        ))}
     </div>
   );
 }
