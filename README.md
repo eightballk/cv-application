@@ -1,20 +1,50 @@
 # CV Application
-A simple application to build a simple resume. It is very simple at the moment as I am currently learning React and do not want to spend too much time on just one project.
-I will come back to this project in future and add more features.
 
-## Features 
-- User can get to enter their details and see it all change and display on CV in real-time.
-- User can edit their information just before printing or saving their CV.
-- User can print or save their CV.
+A dark-themed resume builder that runs entirely in your browser. Fill in the form on the left, watch an A4 page update live on the right, then print it or save it as a PDF.
+
+**Live demo:** [eightballk.github.io/cv-application](https://eightballk.github.io/cv-application/)
+
+![The editor on the left and the live A4 CV preview on the right](docs/preview.png)
+
+## Features
+
+- **Live A4 preview.** The page on the right is the same size as the printed one, with a marker showing where each page break will fall.
+- **Flexible content.** Name and contact details, an optional address, and as many links as you want (LinkedIn, GitHub, portfolio, anything).
+- **Multiple entries.** Work experience, projects, skills and education all support any number of entries, with bullet points written one per line.
+- **Custom skill categories.** Name the groups yourself ("Languages", "Tools", "Certifications").
+- **Full control over order.** Move entries up and down inside a section, reorder whole sections, or hide the ones you don't need. Empty sections never show up on the CV.
+- **Autosave.** Everything is saved to your browser as you type. Nothing is sent to a server.
+- **Print or save as PDF.** A clean print layout with proper page margins and no entries split across pages.
+- **Sample data.** Load sample content to see how a finished CV looks, or clear everything to start fresh.
 
 > [!NOTE]
-> The website is not responsive currently so it might not work as expected on smaller devices. It will be fixed in future.
+> The editor is designed for desktop screens. A layout for smaller devices is planned.
 
-## Preview
-![Screenshot of the website's form fill up page with live CV by side](https://github.com/High-Banana/cv-application/assets/138550995/db246f36-8cbe-4433-8bf5-7233c0cee323)
+## Tech stack
 
-Checkout the website by clicking on [CV Application](https://eightballk.github.io/cv-application/)
+- React 18 and TypeScript
+- Vite
+- Tailwind CSS 3
+- Lucide icons
 
-## Technologies used
-* React JS
-* Tailwind CSS
+## Getting started
+
+```bash
+git clone git@github.com:eightballk/CV-application.git
+cd CV-application
+npm install
+npm run dev
+```
+
+| Command | What it does |
+| --- | --- |
+| `npm run dev` | Start the dev server |
+| `npm run build` | Type-check and build to `dist/` |
+| `npm run preview` | Serve the production build locally |
+| `npm run lint` | Run ESLint |
+| `npm run deploy` | Build and publish to GitHub Pages |
+
+## Planned
+
+- Languages and hobbies sections
+- Responsive layout for phones and tablets
