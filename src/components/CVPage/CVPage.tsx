@@ -4,6 +4,7 @@ import { CVInfo } from "@/types";
 import { displayUrl, toHref } from "@/lib/links";
 import ExperienceSection from "@/components/cv-sections/work-section/ExperienceSection";
 import ProjectsSection from "@/components/cv-sections/project-section/ProjectSection";
+import SkillsSection from "@/components/cv-sections/skills-section/SkillsSection";
 
 interface CVPageProps {
   person: CVInfo;
@@ -83,6 +84,7 @@ export default function CVPage({ person }: CVPageProps) {
 
       <ExperienceSection entries={person.work} />
       <ProjectsSection entries={person.projects} />
+      <SkillsSection groups={person.skills} />
 
       <section className="p-5">
         <h2 className="text-2xl font-bold">Education</h2>

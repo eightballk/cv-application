@@ -21,6 +21,12 @@ export interface ProjectEntry {
   highlights: string; // one bullet per line
 }
 
+export interface SkillGroup {
+  id: string;
+  category: string; // can be empty, then only the skills are shown
+  items: string; // comma separated, like "C#, TypeScript, C++"
+}
+
 export interface CVInfo {
   fullName: string;
   email: string;
@@ -29,6 +35,7 @@ export interface CVInfo {
   links: CVLink[];
   work: WorkEntry[];
   projects: ProjectEntry[];
+  skills: SkillGroup[];
   schoolName: string;
   studyTitle: string;
   studyDate: string;
@@ -36,7 +43,10 @@ export interface CVInfo {
 }
 
 // every CVInfo field that holds plain text (everything except links)
-export type TextField = Exclude<keyof CVInfo, "links" | "work" | "projects">;
+export type TextField = Exclude<
+  keyof CVInfo,
+  "links" | "work" | "projects" | "skills"
+>;
 
 export interface FormSectionProps {
   info: CVInfo;

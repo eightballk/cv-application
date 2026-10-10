@@ -1,4 +1,4 @@
-import type { ProjectEntry, WorkEntry } from "@/types";
+import type { ProjectEntry, SkillGroup, WorkEntry } from "@/types";
 
 export const createWorkEntry = (): WorkEntry => ({
   id: crypto.randomUUID(),
@@ -18,6 +18,12 @@ export const createProjectEntry = (): ProjectEntry => ({
   highlights: "",
 });
 
+export const createSkillGroup = (): SkillGroup => ({
+  id: crypto.randomUUID(),
+  category: "",
+  items: "",
+});
+
 // Strips a leading list marker from pasted bullets.
 // \u2022 bullet, \u25E6 white bullet, \u25AA small square, \u25A0 square,
 // \u25CF circle, \u2023 triangle, \u2013 en dash
@@ -28,4 +34,10 @@ export const toBullets = (text: string): string[] =>
   text
     .split("\n")
     .map((line) => line.trim().replace(LEADING_MARKER, ""))
+    .filter(Boolean);
+
+export const toSkillList = (text: string): string[] =>
+  text
+    .split(",")
+    .map((item) => item.trim())
     .filter(Boolean);

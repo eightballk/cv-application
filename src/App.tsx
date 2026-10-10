@@ -1,11 +1,12 @@
 import { useState } from "react";
 import Educational from "@/components/Educational";
 import Button from "@/components/ui/Button";
-import type { CVInfo, CVLink, ProjectEntry, TextField, WorkEntry } from "@/types";
+import type { CVInfo, CVLink, ProjectEntry, SkillGroup, TextField, WorkEntry } from "@/types";
 import CVPage from "@/components/CVPage/CVPage";
 import Experience from "@/components/cv-sections/work-section/Experience";
 import General from "@/components/cv-sections/general-section/General";
 import Projects from "@/components/cv-sections/project-section/Projects";
+import Skills from "@/components/cv-sections/skills-section/Skills";
 
 const initialInfo: CVInfo = {
   fullName: "Spongebob Squarepants",
@@ -40,6 +41,10 @@ const initialInfo: CVInfo = {
       highlights: "Tracks 50+ jellyfish sightings on a live map\nCut load time by 40% with lazy loading",
     },
   ],
+  skills: [
+    { id: "skills-1", category: "Languages", items: "C#, TypeScript, C++" },
+    { id: "skills-2", category: "Frameworks", items: "ASP.NET Core, React, Tailwind CSS" },
+  ],
 };
 
 export default function App() {
@@ -62,6 +67,10 @@ export default function App() {
     setInfo((prev) => ({ ...prev, projects }));
   };
 
+  const updateSkills = (skills: SkillGroup[]) => {
+    setInfo((prev) => ({ ...prev, skills }));
+  };
+
   if (isPreview) {
     return (
       <>
@@ -82,6 +91,7 @@ export default function App() {
         <General info={info} onChange={updateField} onLinksChange={updateLinks} />
         <Experience entries={info.work} onChange={updateWork} />
         <Projects entries={info.projects} onChange={updateProjects} />
+        <Skills groups={info.skills} onChange={updateSkills} />
         <Educational info={info} onChange={updateField} />
       </div>
       <div className="mx-12 my-28">
