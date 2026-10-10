@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CVPage from "@/components/CVPage/CVPage";
 import PagePreview from "@/components/CVPage/PagePreview";
 import General from "@/components/cv-sections/general-section/General";
@@ -10,22 +10,22 @@ import Button from "@/components/ui/Button";
 import { emptyInfo, sampleInfo } from "@/lib/defaults";
 import { loadInfo, saveInfo } from "@/lib/storage";
 import type { CVInfo, ListField, TextField } from "@/types";
+import { useAutosave } from "@/hooks/useAutoSave";
 
 export default function App() {
   const [info, setInfo] = useState<CVInfo>(loadInfo);
 
-  useEffect(() => {
-    saveInfo(info);
-  }, [info]);
+  useAutosave(info, saveInfo);
 
   const updateField = (field: TextField, value: string) => {
     setInfo((prev) => ({ ...prev, [field]: value }));
   };
-const setList =
-    <K extends ListField>(key: K) =>
-    (value: CVInfo[K]) => {
-      setInfo((prev) => ({ ...prev, [key]: value }));
-    };
+
+  const setList =
+      <K extends ListField>(key: K) =>
+      (value: CVInfo[K]) => {
+        setInfo((prev) => ({ ...prev, [key]: value }));
+      };
 
   const clearAll = () => {
     if (window.confirm("Clear everything? This removes all the information you entered.")) {
