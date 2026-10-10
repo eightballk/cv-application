@@ -1,4 +1,5 @@
 import type { SectionConfig, SectionId } from "@/types";
+import { moveItem } from "@/lib/entries";
 
 export const SECTION_IDS: readonly SectionId[] = [
   "experience",
@@ -41,19 +42,16 @@ export function normalizeSections(value: unknown): SectionConfig[] {
   return result;
 }
 
-export function moveSection(
+export const moveSection = (
   sections: SectionConfig[],
   id: SectionId,
   direction: -1 | 1,
-): SectionConfig[] {
-  const index = sections.findIndex((section) => section.id === id);
-  const target = index + direction;
-  if (index === -1 || target < 0 || target >= sections.length) return sections;
-
-  const next = [...sections];
-  [next[index], next[target]] = [next[target], next[index]];
-  return next;
-}
+): SectionConfig[] =>
+  moveItem(
+    sections,
+    sections.findIndex((section) => section.id === id),
+    direction,
+  );
 
 export const toggleSection = (
   sections: SectionConfig[],

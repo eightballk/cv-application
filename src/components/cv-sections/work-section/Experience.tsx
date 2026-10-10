@@ -14,14 +14,17 @@ interface ExperienceProps {
 }
 
 export default function Experience({ entries, onChange, controls }: ExperienceProps) {
-  const { add, remove, update } = entryActions(entries, onChange, createWorkEntry);
+  const { add, remove, update, move } = entryActions(entries, onChange, createWorkEntry);
 
   return (
     <FormSection title="Work Experience" controls={controls}>
       {entries.map((entry, index) => (
         <EntryCard
           key={entry.id}
-          title={entry.company || `Position ${index + 1}`}
+          title={entry.company || entry.position || `Position ${index + 1}`}
+          index={index}
+          total={entries.length}
+          onMove={(direction) => move(entry.id, direction)}
           onRemove={() => remove(entry.id)}
         >
           <Input

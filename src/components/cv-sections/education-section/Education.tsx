@@ -14,7 +14,7 @@ interface EducationProps {
 }
 
 export default function Education({ entries, onChange, controls }: EducationProps) {
-  const { add, remove, update } = entryActions(entries, onChange, createEducationEntry);
+  const { add, remove, update, move } = entryActions(entries, onChange, createEducationEntry);
 
   return (
     <FormSection title="Education" controls={controls}>
@@ -22,6 +22,9 @@ export default function Education({ entries, onChange, controls }: EducationProp
         <EntryCard
           key={entry.id}
           title={entry.school || `School ${index + 1}`}
+          index={index}
+          total={entries.length}
+          onMove={(direction) => move(entry.id, direction)}
           onRemove={() => remove(entry.id)}
         >
           <Input

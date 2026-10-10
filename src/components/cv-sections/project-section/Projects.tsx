@@ -14,7 +14,7 @@ interface ProjectsProps {
 }
 
 export default function Projects({ entries, onChange, controls }: ProjectsProps) {
-  const { add, remove, update } = entryActions(entries, onChange, createProjectEntry);
+  const { add, remove, update, move} = entryActions(entries, onChange, createProjectEntry);
 
   return (
     <FormSection title="Projects" controls={controls}>
@@ -22,6 +22,9 @@ export default function Projects({ entries, onChange, controls }: ProjectsProps)
         <EntryCard
           key={entry.id}
           title={entry.name || `Project ${index + 1}`}
+          index={index}
+          total={entries.length}
+          onMove={(direction) => move(entry.id, direction)}
           onRemove={() => remove(entry.id)}
         >
           <Input

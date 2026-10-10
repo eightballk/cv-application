@@ -13,7 +13,7 @@ interface SkillsProps {
 }
 
 export default function Skills({ groups, onChange, controls }: SkillsProps) {
-  const { add, remove, update } = entryActions(groups, onChange, createSkillGroup);
+  const { add, remove, update, move} = entryActions(groups, onChange, createSkillGroup);
 
   return (
     <FormSection title="Skills" controls={controls}>
@@ -21,6 +21,9 @@ export default function Skills({ groups, onChange, controls }: SkillsProps) {
         <EntryCard
           key={group.id}
           title={group.category || `Group ${index + 1}`}
+          index={index}
+          total={groups.length}
+          onMove={(direction) => move(group.id, direction)}
           onRemove={() => remove(group.id)}
         >
           <Input

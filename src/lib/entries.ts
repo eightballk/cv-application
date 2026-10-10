@@ -66,7 +66,21 @@ export const formatDateRange = (start: string, end: string): string =>
     .filter(Boolean)
     .join(" - ");
 
-// add / remove / update for any list of items that have an id
+export function moveItem<T>(items: T[], index: number, direction: -1 | 1): T[] {
+  const target = index + direction;
+  if (
+    index < 0 ||
+    index >= items.length ||
+    target < 0 ||
+    target >= items.length
+  )
+    return items;
+
+  const next = [...items];
+  [next[index], next[target]] = [next[target], next[index]];
+  return next;
+}
+
 export function entryActions<T extends { id: string }>(
   entries: T[],
   onChange: (entries: T[]) => void,
@@ -78,6 +92,14 @@ export function entryActions<T extends { id: string }>(
     update: (id: string, patch: Partial<Omit<T, "id">>) =>
       onChange(
         entries.map((item) => (item.id === id ? { ...item, ...patch } : item)),
+      ),
+    move: (id: string, direction: -1 | 1) =>
+      onChange(
+        moveItem(
+          entries,
+          entries.findIndex((item) => item.id === id),
+          direction,
+        ),
       ),
   };
 }
