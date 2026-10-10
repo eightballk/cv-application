@@ -42,8 +42,7 @@ npm run dev
 | `npm run build` | Type-check and build to `dist/` |
 | `npm run preview` | Serve the production build locally |
 | `npm run lint` | Run ESLint |
-| `npm run deploy` | Build and publish to GitHub Pages |
-
+| Deploys automatically | Every push to `main` is checked and published by GitHub Actions |
 ## Planned
 
 - Languages and hobbies sections
