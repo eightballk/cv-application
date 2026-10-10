@@ -3,20 +3,27 @@ export interface CVLink {
   url: string;
 }
 
+export interface WorkEntry {
+  id: string;
+  company: string;
+  position: string;
+  location: string;
+  startDate: string;
+  endDate: string;
+  highlights: string; // one bullet per line
+}
+
 export interface CVInfo {
   fullName: string;
   email: string;
   phoneNumber: string;
   address: string; // optional, an empty string means "not shown"
   links: CVLink[];
+  work: WorkEntry[];
   schoolName: string;
   studyTitle: string;
   studyDate: string;
   schoolAddress: string;
-  companyName: string;
-  jobPosition: string;
-  jobDescription: string;
-  jobDate: string;
 }
 
 // every CVInfo field that holds plain text (everything except links)

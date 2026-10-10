@@ -2,9 +2,9 @@ import { useState } from "react";
 import CVPage from "./components/CVPage";
 import Educational from "./components/Educational";
 import General from "./components/General";
-import Practical from "./components/Practical";
 import Button from "./components/ui/Button";
-import type { CVInfo, CVLink, TextField } from "./types";
+import type { CVInfo, CVLink, TextField, WorkEntry } from "./types";
+import Experience from "./components/Experience";
 
 const initialInfo: CVInfo = {
   fullName: "Spongebob Squarepants",
@@ -19,11 +19,17 @@ const initialInfo: CVInfo = {
   studyTitle: "Boating",
   studyDate: "1999-Present",
   schoolAddress: "Bikini Bottom",
-  companyName: "The Krusty Krab",
-  jobPosition: "Fry cook",
-  jobDescription:
-    "I have to cook burgers which tastes extremely good on taste buds of your tongue. I also have to clean the floor sometimes.",
-  jobDate: "1998 - Present",
+  work: [
+    {
+      id: "work-1",
+      company: "The Krusty Krab",
+      position: "Fry Cook",
+      location: "Bikini Bottom",
+      startDate: "Jan 1998",
+      endDate: "Present",
+      highlights: "Cook 200+ Krabby Patties per shift\nKeep the kitchen spotless during rush hour",
+    },
+  ],
 };
 
 export default function App() {
@@ -36,6 +42,10 @@ export default function App() {
 
   const updateLinks = (links: CVLink[]) => {
     setInfo((prev) => ({ ...prev, links }));
+  };
+
+  const updateWork = (work: WorkEntry[]) => {
+    setInfo((prev) => ({ ...prev, work }));
   };
 
   if (isPreview) {
@@ -57,7 +67,7 @@ export default function App() {
       <div>
         <General info={info} onChange={updateField} onLinksChange={updateLinks} />
         <Educational info={info} onChange={updateField} />
-        <Practical info={info} onChange={updateField} />
+        <Experience entries={info.work} onChange={updateWork} />
       </div>
       <div className="mx-12 my-28">
         <CVPage person={info} />

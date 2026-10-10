@@ -2,6 +2,7 @@ import { LinkIcon, MailIcon, MapPinIcon, PhoneIcon } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { displayUrl, toHref } from "../lib/links";
 import type { CVInfo } from "../types";
+import ExperienceSection from "./ExperienceSection";
 
 interface CVPageProps {
   person: CVInfo;
@@ -79,6 +80,8 @@ export default function CVPage({ person }: CVPageProps) {
         </div>
       </header>
 
+      <ExperienceSection entries={person.work} />
+
       <section className="p-5">
         <h2 className="text-2xl font-bold">Education</h2>
         <hr className="mb-2.5 h-0.5 w-11/12 border-0 bg-black" />
@@ -92,21 +95,6 @@ export default function CVPage({ person }: CVPageProps) {
               <span className="font-bold">Title of study:</span>{" "}
               <span className="font-semibold">{person.studyTitle}</span>
             </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="p-5">
-        <h2 className="text-2xl font-bold">Work Experience</h2>
-        <hr className="mb-2.5 h-0.5 w-11/12 border-0 bg-black" />
-        <div className="grid w-11/12 grid-cols-[1.5fr_3fr]">
-          <p className="font-bold">{person.jobDate}</p>
-          <div className="flex flex-col items-start gap-2.5">
-            <p className="text-xl font-bold">{person.jobPosition}</p>
-            <p className="font-semibold">
-              <span className="font-bold">Company Name:</span> {person.companyName}
-            </p>
-            <p className="text-lg font-semibold">{person.jobDescription}</p>
           </div>
         </div>
       </section>
