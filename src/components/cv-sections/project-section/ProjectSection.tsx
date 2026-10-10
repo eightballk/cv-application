@@ -24,7 +24,7 @@ export default function ProjectsSection({ entries }: ProjectsSectionProps) {
               <div className="flex justify-between gap-4">
                 <h3 className="font-bold">
                   {entry.name}
-                  {techStack && <span className="font-normal italic"> | {techStack}</span>}
+                  {techStack && <span className="font-normal text-neutral-700 text-sm"> | {techStack}</span>}
                 </h3>
                 {url && (
                   <a

@@ -1,18 +1,11 @@
 import type { CVInfo } from "@/types";
+import {
+  createEducationEntry,
+  createProjectEntry,
+  createSkillGroup,
+  createWorkEntry,
+} from "@/lib/entries";
 import { defaultSections } from "@/lib/sections";
-
-export const emptyInfo: CVInfo = {
-  fullName: "",
-  email: "",
-  phoneNumber: "",
-  address: "",
-  links: [],
-  work: [],
-  projects: [],
-  skills: [],
-  education: [],
-  sections: defaultSections(),
-};
 
 export const sampleInfo: CVInfo = {
   fullName: "Spongebob Squarepants",
@@ -66,3 +59,16 @@ export const sampleInfo: CVInfo = {
   ],
   sections: defaultSections(),
 };
+
+export const createEmptyInfo = (): CVInfo => ({
+  fullName: "",
+  email: "",
+  phoneNumber: "",
+  address: "",
+  links: [],
+  work: [createWorkEntry()],
+  projects: [createProjectEntry()],
+  skills: [createSkillGroup()],
+  education: [createEducationEntry()],
+  sections: defaultSections(),
+});

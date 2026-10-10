@@ -1,4 +1,4 @@
-import { emptyInfo, sampleInfo } from "@/lib/defaults";
+import { createEmptyInfo, sampleInfo } from "@/lib/defaults";
 import type { CVInfo } from "@/types";
 import { normalizeSections } from "./sections";
 
@@ -13,14 +13,15 @@ export function loadInfo(): CVInfo {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw === null) return sampleInfo;
 
+    const empty = createEmptyInfo();
     const parsed: unknown = JSON.parse(raw);
-    if (!isRecord(parsed)) return emptyInfo;
+    if (!isRecord(parsed)) return empty;
 
-    const result: Record<string, unknown> = { ...emptyInfo };
-    for (const [key, empty] of Object.entries(emptyInfo)) {
+    const result: Record<string, unknown> = { ...empty };
+    for (const [key, emptyValue] of Object.entries(empty)) {
       const value = parsed[key];
       const isValid =
-        typeof empty === "string"
+        typeof emptyValue === "string"
           ? typeof value === "string"
           : Array.isArray(value);
       if (isValid) result[key] = value;
@@ -28,7 +29,7 @@ export function loadInfo(): CVInfo {
     result.sections = normalizeSections(parsed.sections);
     return result as unknown as CVInfo;
   } catch {
-    return emptyInfo;
+    return createEmptyInfo();
   }
 }
 

@@ -17,8 +17,8 @@ export default function ExperienceSection({ entries }: ExperienceSectionProps) {
         {visible.map((entry) => (
           <CVEntry
             key={entry.id}
-            title={entry.company}
-            subtitle={entry.position}
+            title={entry.position}
+            subtitle={entry.company}
             dates={formatDateRange(entry.startDate, entry.endDate)}
             location={entry.location}
             bullets={toBullets(entry.highlights)}

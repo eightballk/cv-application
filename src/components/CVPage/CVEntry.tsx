@@ -11,9 +11,9 @@ export default function CVEntry({ title, subtitle, dates, location, bullets }: C
     <article className="break-inside-avoid">
       <div className="flex justify-between gap-4">
         <h3 className="font-bold">{title}</h3>
-        <span className="shrink-0 text-sm">{dates}</span>
+        <span className="shrink-0 text-xs">{dates}</span>
       </div>
-      <div className="flex justify-between gap-4 text-sm italic">
+      <div className="flex justify-between gap-4 text-sm text-neutral-700">
         <span>{subtitle}</span>
         <span>{location}</span>
       </div>

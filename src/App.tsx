@@ -7,7 +7,7 @@ import Projects from "@/components/cv-sections/project-section/Projects";
 import Skills from "@/components/cv-sections/skills-section/Skills";
 import Education from "@/components/cv-sections/education-section/Education";
 import Button from "@/components/ui/Button";
-import { emptyInfo, sampleInfo } from "@/lib/defaults";
+import { createEmptyInfo, sampleInfo } from "@/lib/defaults";
 import { loadInfo, saveInfo } from "@/lib/storage";
 import type { CVInfo, ListField, SectionId, TextField } from "@/types";
 import { useAutosave } from "@/hooks/useAutoSave";
@@ -31,7 +31,7 @@ export default function App() {
 
   const clearAll = () => {
     if (window.confirm("Clear everything? This removes all the information you entered.")) {
-      setInfo((prev) => ({ ...emptyInfo, sections: prev.sections }));
+      setInfo((prev) => ({ ...createEmptyInfo(), sections: prev.sections }));
     }
   };
 
